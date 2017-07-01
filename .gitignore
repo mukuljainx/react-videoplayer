@@ -5,3 +5,5 @@ favicon.png
 node_modules
 lib
 umd
+.idea
+src/__tests__/__snapshots__/
