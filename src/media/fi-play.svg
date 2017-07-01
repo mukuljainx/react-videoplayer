@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="100px" viewBox="0 0 88 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>fi-play</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="back.svg-fi-play.svg-next.svg-pause-button.svg-speaker.svg-speedometer.svg-switch-to-full-screen-button.svg" transform="translate(-1446.000000, -715.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="fi-play" transform="translate(1446.000000, 715.000000)">
+                <path d="M87.0677419,50 C87.0677419,48.633871 86.3032258,47.4596774 85.1854839,46.8435484 L5.71129032,0.959677419 C5.12580645,0.551612903 4.41612903,0.308064516 3.6483871,0.308064516 C1.65,0.308064516 0.0290322581,1.92741935 0.0290322581,3.92580645 C0.0290322581,4.06612903 0.0548387097,4.1983871 0.0709677419,4.33387097 L0.0290322581,4.33387097 L0.0290322581,96.4806452 L0.0709677419,96.4806452 C0.275806452,98.2854839 1.79032258,99.6903226 3.6483871,99.6903226 C4.30806452,99.6903226 4.91774194,99.5016129 5.45,99.1935484 L5.48225806,99.25 L85.2822581,53.1774194 L85.25,53.1209677 C86.3322581,52.4951613 87.0677419,51.3387097 87.0677419,50 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

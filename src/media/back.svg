@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="100px" viewBox="0 0 74 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>back</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="back.svg-fi-play.svg-next.svg-pause-button.svg-speaker.svg-speedometer.svg-switch-to-full-screen-button.svg" transform="translate(-1117.000000, -715.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="back" transform="translate(1117.000000, 715.000000)">
+                <path d="M72.7261905,0.271428571 C71.9428571,-0.135714286 70.997619,-0.080952381 70.2666667,0.421428571 L4.95238095,45.4642857 L4.95238095,2.38095238 C4.95238095,1.06428571 3.88571429,0 2.57142857,0 C1.25714286,0 0.19047619,1.06428571 0.19047619,2.38095238 L0.19047619,97.6190476 C0.19047619,98.9357143 1.25714286,100 2.57142857,100 C3.88571429,100 4.95238095,98.9357143 4.95238095,97.6190476 L4.95238095,54.5357143 L70.2666667,99.5809524 C70.6738095,99.8571429 71.1452381,100 71.6190476,100 C71.997619,100 72.3785714,99.9095238 72.7261905,99.7285714 C73.5095238,99.3166667 74,98.5047619 74,97.6190476 L74,2.38095238 C74,1.4952381 73.5095238,0.683333333 72.7261905,0.271428571 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

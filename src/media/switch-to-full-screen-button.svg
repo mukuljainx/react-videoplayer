@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>switch-to-full-screen-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="back.svg-fi-play.svg-next.svg-pause-button.svg-speaker.svg-speedometer.svg-switch-to-full-screen-button.svg" transform="translate(-2492.000000, -715.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="switch-to-full-screen-button" transform="translate(2492.000000, 715.000000)">
+                <path d="M14.2857143,64.2857143 L0,64.2857143 L0,100 L35.7142857,100 L35.7142857,85.7142857 L14.2857143,85.7142857 L14.2857143,64.2857143 Z M0,35.7142857 L14.2857143,35.7142857 L14.2857143,14.2857143 L35.7142857,14.2857143 L35.7142857,0 L0,0 L0,35.7142857 Z M85.7142857,85.7142857 L64.2857143,85.7142857 L64.2857143,100 L100,100 L100,64.2857143 L85.7142857,64.2857143 L85.7142857,85.7142857 Z M64.2857143,0 L64.2857143,14.2857143 L85.7142857,14.2857143 L85.7142857,35.7142857 L100,35.7142857 L100,0 L64.2857143,0 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

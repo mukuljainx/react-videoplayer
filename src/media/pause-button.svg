@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="100px" viewBox="0 0 68 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>pause-button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="back.svg-fi-play.svg-next.svg-pause-button.svg-speaker.svg-speedometer.svg-switch-to-full-screen-button.svg" transform="translate(-795.000000, -715.000000)" fill-rule="nonzero" fill="#FFFFFF">
+            <g id="pause-button" transform="translate(795.000000, 715.000000)">
+                <path d="M27.1641791,96.3205224 C27.1641791,98.3089552 25.5520522,99.9212687 23.5634328,99.9212687 L3.75932836,99.9212687 C1.77070896,99.9212687 0.15858209,98.3091418 0.15858209,96.3205224 L0.15858209,3.60074627 C0.15858209,1.61212687 1.77070896,0 3.75932836,0 L23.5634328,0 C25.5520522,0 27.1641791,1.61212687 27.1641791,3.60074627 L27.1641791,96.3205224 Z" id="Shape"></path>
+                <path d="M67.6731343,96.3205224 C67.6731343,98.3089552 66.0610075,99.9212687 64.0723881,99.9212687 L44.2682836,99.9212687 C42.2796642,99.9212687 40.6675373,98.3091418 40.6675373,96.3205224 L40.6675373,3.60074627 C40.6675373,1.61212687 42.2796642,0 44.2682836,0 L64.0723881,0 C66.0610075,0 67.6731343,1.61212687 67.6731343,3.60074627 L67.6731343,96.3205224 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
