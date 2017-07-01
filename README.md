@@ -72,7 +72,7 @@ Prop   	 	     |  Type      |  Default      |  Description
 ## Keyboard Shortcuts
 
 Key   	 	     |  Action 
----------   	 |  -------
+---------   	 |  ---------
       Up Arrow |  Increase Volume
       Down Arrow |  Decrease Volume
       Right Arrow |  Seek Forward
