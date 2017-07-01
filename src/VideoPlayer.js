@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import Notification from './Notification'
 
-import './styles/videoPlayer.css'
-
 class VideoPlayer extends React.Component {
   constructor (props) {
     super(props)
