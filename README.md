@@ -233,6 +233,15 @@ class Player extends React.Component {
 export default Player;
 
 ```
+## Screenshots
+<p align="center">
+   <img src="https://github.com/mukuljainx/react-videoplayer/blob/master/screenshots/player.png" width="500">
+   <img src="https://github.com/mukuljainx/react-videoplayer/blob/master/screenshots/notification-volume.png" width="500">
+   <img src="https://github.com/mukuljainx/react-videoplayer/blob/master/screenshots/notification-help.png" width="500">
+   <img src="https://github.com/mukuljainx/react-videoplayer/blob/master/screenshots/helpbox.png" width="500">
+</p>
+
+**Note**: Image contains music video [believer](https://www.youtube.com/watch?v=IhP3J0j9JmY) by [Imagine Dragons](https://en.wikipedia.org/wiki/Imagine_Dragons) to which I claim not rights.
 
 ## Issues
 Feel free to contribute. Submit a Pull Request or open an issue for further discussion.
