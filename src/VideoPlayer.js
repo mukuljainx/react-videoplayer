@@ -121,7 +121,7 @@ class VideoPlayer extends React.Component {
       const totalSeconds = parseFloat(minutes) * 60 + parseFloat(seconds)
       this.video.currentTime = totalSeconds
     }
-    if (!this.props.browserControls) {
+    if (!this.props.defaultBrowserControls) {
       this.videoDefaultControls = 'hide-video-controls'
     }
   }
@@ -573,7 +573,7 @@ class VideoPlayer extends React.Component {
               onEnded={this.onEnded}
               onTimeUpdate={this.updateProgressBar}
             />
-            <div className='video-controls react-video-player-row react-video-player-align-middle'
+            {this.props.customHtmlControls && <div className='video-controls react-video-player-row react-video-player-align-middle'
               ref='videoControlContainer'
               style={{'display': this.state.videoControlContainerDisplay}}>
               <div className='playback-control react-video-player-columns react-video-player-shrink'>
@@ -645,7 +645,7 @@ class VideoPlayer extends React.Component {
                   </button>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>
@@ -677,8 +677,8 @@ VideoPlayer.propTypes = {
   playPrevious: PropTypes.func,
   defaultSeekTime: PropTypes.number,
   defaultVolumeChange: PropTypes.number,
-  browserControls: PropTypes.bool,
-  htmlControls: PropTypes.bool,
+  defaultBrowserControls: PropTypes.bool,
+  customHtmlControls: PropTypes.bool,
   keyboardControls: PropTypes.bool,
   notificationClass: PropTypes.string,
   notificationDuration: PropTypes.number
@@ -703,8 +703,8 @@ VideoPlayer.defaultProps = {
   defaultSeekTime: 10,
   defaultVolumeChange: 10,
   settings: false,
-  browserControls: false,
-  htmlControls: true,
+  defaultBrowserControls: false,
+  customHtmlControls: true,
   keyboardControls: true,
   notificationClass: 'video-player-notifications',
   notificationDuration: 1500
