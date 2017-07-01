@@ -545,106 +545,104 @@ class VideoPlayer extends React.Component {
 
   render () {
     return (
-      <div>
-        <div className='video-player-wrapper-row'>
-          <div className='react-video-player-columns'>
-            <div
-              className='video-player-wrapper'
-              ref='videoContainer'
-              onMouseEnter={this.showVideoControls}
-              onMouseLeave={this.hideVideoControls}
-              onMouseMove={this.showVideoControls}
-            >
-              {this.state.showNotification &&
-              <Notification className={this.notificationClass} values={this.notificationValue} />}
+      <div className='video-player-wrapper-row'>
+        <div className='react-video-player-columns'>
+          <div
+            className='video-player-wrapper'
+            ref='videoContainer'
+            onMouseEnter={this.showVideoControls}
+            onMouseLeave={this.hideVideoControls}
+            onMouseMove={this.showVideoControls}
+          >
+            {this.state.showNotification &&
+            <Notification className={this.notificationClass} values={this.notificationValue} />}
 
-              <video
-                className={this.state.videoClassName + ' ' + this.videoDefaultControls + ' ' + this.state.hideMouse + ' react-video-player-align-middle'}
-                onKeyDown={this.videoHandleKeyDown}
-                onClick={this.videoOnClick}
-                onDoubleClick={this.videoFullScreenToggle}
-                ref='video'
-                src={this.props.videoSrc}
-                controls
-                autoPlay={this.props.autoPlay}
-                muted={this.props.muted}
-                onDurationChange={this.onDurationChange}
-                onPlay={this.onPlay}
-                onPlaying={this.onPlaying}
-                onEnded={this.onEnded}
-                onTimeUpdate={this.updateProgressBar}
-              />
-              <div className='video-controls react-video-player-row react-video-player-align-middle'
-                ref='videoControlContainer'
-                style={{'display': this.state.videoControlContainerDisplay}}>
-                <div className='playback-control react-video-player-columns react-video-player-shrink'>
-                  {this.props.playlist &&
-                  <button className={'previous ' + this.props.previousButtonClassName}
-                    onClick={this.playPrevious}>
-                    <img src={this.props.previousButtonImg} />
-                  </button>}
+            <video
+              className={this.state.videoClassName + ' ' + this.videoDefaultControls + ' ' + this.state.hideMouse + ' react-video-player-align-middle'}
+              onKeyDown={this.videoHandleKeyDown}
+              onClick={this.videoOnClick}
+              onDoubleClick={this.videoFullScreenToggle}
+              ref='video'
+              src={this.props.videoSrc}
+              controls
+              autoPlay={this.props.autoPlay}
+              muted={this.props.muted}
+              onDurationChange={this.onDurationChange}
+              onPlay={this.onPlay}
+              onPlaying={this.onPlaying}
+              onEnded={this.onEnded}
+              onTimeUpdate={this.updateProgressBar}
+            />
+            <div className='video-controls react-video-player-row react-video-player-align-middle'
+              ref='videoControlContainer'
+              style={{'display': this.state.videoControlContainerDisplay}}>
+              <div className='playback-control react-video-player-columns react-video-player-shrink'>
+                {this.props.playlist &&
+                <button className={'previous ' + this.props.previousButtonClassName}
+                  onClick={this.playPrevious}>
+                  <img src={this.props.previousButtonImg} />
+                </button>}
 
-                  <button className='play-pause' onClick={this.toggleVideoPlay}>
-                    <img src={this.videoButton} />
-                  </button>
+                <button className='play-pause' onClick={this.toggleVideoPlay}>
+                  <img src={this.videoButton} />
+                </button>
 
-                  {this.props.playlist &&
-                  <button className={'next ' + this.props.nextButtonClassName}
-                    onClick={this.props.playNext}>
-                    <img src={this.props.nextButtonImg} />
-                  </button>}
-                </div>
-                <div className='progress-bar-control react-video-player-columns'>
-                  <div className='progress-bar'
-                    onMouseDown={this.progressBarDragStart}
-                    ref='progressBar'>
-                    <div className='progress' style={{'width': this.state.videoProgress + '%'}} />
-                    <div className='progress-buffered'
-                      style={{
-                        'width': (this.state.videoBufferedProgressEnd - this.state.videoBufferedProgressStart) + '%',
-                        'left': (this.state.videoBufferedProgressStart) + '%'
-                      }}
-                    />
-                  </div >
+                {this.props.playlist &&
+                <button className={'next ' + this.props.nextButtonClassName}
+                  onClick={this.props.playNext}>
+                  <img src={this.props.nextButtonImg} />
+                </button>}
+              </div>
+              <div className='progress-bar-control react-video-player-columns'>
+                <div className='progress-bar'
+                  onMouseDown={this.progressBarDragStart}
+                  ref='progressBar'>
+                  <div className='progress' style={{'width': this.state.videoProgress + '%'}} />
+                  <div className='progress-buffered'
+                    style={{
+                      'width': (this.state.videoBufferedProgressEnd - this.state.videoBufferedProgressStart) + '%',
+                      'left': (this.state.videoBufferedProgressStart) + '%'
+                    }}
+                  />
                 </div >
-                <div className='react-video-player-columns react-video-player-shrink'>
-                  <div
-                    ref='volumeControl'
-                    className='volume-control'
-                    onMouseLeave={this.hideVolumeSlider}>
-                    <button
-                      className='volumeButton'
-                      onClick={this.toggleVolume}
-                      onMouseEnter={this.showVolumeSlider}>
-                      <img
-                        src={this.volumeButtonImg} />
-                    </button >
-                    {this.state.showVolumeSlider && <div
-                      className='volume-slider'
-                      ref='volumeSlider'
-                      onClick={this.changeVolume}
-                      onMouseDown={this.volumeSliderDragStart}
-                    >
-                      <div className='volume-wrapper-box'>
-                        <div className='volume-wrapper'>
-                          <div className='volume'
-                            style={{'height': this.state.videoVolume * 100 + '%'}} />
-                        </div>
+              </div >
+              <div className='react-video-player-columns react-video-player-shrink'>
+                <div
+                  ref='volumeControl'
+                  className='volume-control'
+                  onMouseLeave={this.hideVolumeSlider}>
+                  <button
+                    className='volumeButton'
+                    onClick={this.toggleVolume}
+                    onMouseEnter={this.showVolumeSlider}>
+                    <img
+                      src={this.volumeButtonImg} />
+                  </button >
+                  {this.state.showVolumeSlider && <div
+                    className='volume-slider'
+                    ref='volumeSlider'
+                    onClick={this.changeVolume}
+                    onMouseDown={this.volumeSliderDragStart}
+                  >
+                    <div className='volume-wrapper-box'>
+                      <div className='volume-wrapper'>
+                        <div className='volume'
+                          style={{'height': this.state.videoVolume * 100 + '%'}} />
                       </div>
                     </div>
-                    }
                   </div>
+                  }
                 </div>
+              </div>
 
-                <div className='react-video-player-columns react-video-player-shrink'>
-                  <div ref='fullScreen' className='fullscreen-control'>
-                    <button
-                      className='volumeButton'
-                      onClick={this.videoFullScreenToggle}
-                    >
-                      <img src={this.props.fullScreenButtonImg} />
-                    </button>
-                  </div>
+              <div className='react-video-player-columns react-video-player-shrink'>
+                <div ref='fullScreen' className='fullscreen-control'>
+                  <button
+                    className='volumeButton'
+                    onClick={this.videoFullScreenToggle}
+                  >
+                    <img src={this.props.fullScreenButtonImg} />
+                  </button>
                 </div>
               </div>
             </div>

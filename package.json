@@ -112,7 +112,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      ".*\\.scss$": "<rootDir>/src/"
+      ".*\\.(scss|svg)$": "<rootDir>/src/"
     }
   },
   "directories": {
