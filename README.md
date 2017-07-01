@@ -63,8 +63,8 @@ Prop   	 	     |  Type      |  Default      |  Description
   `playPrevious` | func | | func called when prev buttin is clicked 
   `defaultSeekTime` | number | 10 | default seek time when video is seeked through key
   `defaultVolumeChange` | number | 10 | default volume change when changed through key
-  `browserControls` | bool | false | default html5 controls
-  `htmlControls` | bool | true | default custom controls
+  `defaultBrowserControls` | bool | false | default html5 controls
+  `customHtmlControls` | bool | true | default custom controls
   `keyboardControls` | bool | true | enables keyboard controls
   `notificationClass` | string | 'video-player-notifications' | default class for notification
   `notificationDuration` | number | 1500 | timeout for notification
