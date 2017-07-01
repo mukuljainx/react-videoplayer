@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Notification from './Notification'
 
-// import './styles/videoPlayer.css'
+import './styles/videoPlayer.css'
 
 class VideoPlayer extends React.Component {
   constructor (props) {
@@ -85,7 +85,7 @@ class VideoPlayer extends React.Component {
     this.videoControlContainer = this.refs.videoControlContainer
     this.lastSavedVolume = this.video.volume
     this.defaultSeekTime = this.props.defaultSeekTime
-    this.defaultVolumeChange = this.props.defaultVolumeChange
+    this.defaultVolumeChange = this.props.defaultVolumeChange / 100
     this.progressBarWrapper = this.refs.progressBar
     this.preventSliderHide = false
     this.theaterModeOriginal = false
@@ -111,6 +111,18 @@ class VideoPlayer extends React.Component {
       72: {action: 'showHelpBox', key: 'H'} // h
     }
 
+    this.video.volume = this.props.videoVolume / 100
+    this.video.playbackRate = this.props.videoPlaybackRate
+    if (this.props.autoPlay) {
+      this.video.play()
+    }
+    if (this.props.videoProgress.length > 0) {
+      const time = this.props.videoProgress.split('m')
+      const minutes = time[0]
+      const seconds = time[1].split('s')[0]
+      const totalSeconds = parseFloat(minutes) * 60 + parseFloat(seconds)
+      this.video.currentTime = totalSeconds
+    }
     if (!this.props.browserControls) {
       this.videoDefaultControls = 'hide-video-controls'
     }
@@ -118,28 +130,8 @@ class VideoPlayer extends React.Component {
 
   componentWillUnmount () {
     clearTimeout(this.hideAgain)
+    clearTimeout(this.hideNotificationTimeOut)
   }
-
-  // onChange() {
-  //
-  //     const file = this.refs.lol.files[0];
-  //
-  //     // let reader = new FileReader();
-  //     // var url = reader.readAsDataURL(file);
-  //     // reader.onloadend = function (e) {
-  //     //     debugger;
-  //     //     this.setState({
-  //     //         videoSrc : [reader.result]
-  //     // });
-  //     // }.bind(this);
-  //
-  //
-  //     const fileURL = URL.createObjectURL(file);
-  //
-  //     this.setState({
-  //         videoSrc: fileURL,
-  //     });
-  // }
 
   changePlaybackRate (option) {
     let newPlaybackRate = this.video.playbackRate
@@ -419,7 +411,7 @@ class VideoPlayer extends React.Component {
   }
 
   videoHandleKeyDown (event) {
-    if (!this.props.keyboardControl) {
+    if (!this.props.keyboardControls) {
       return
     }
     event.preventDefault()
@@ -630,7 +622,6 @@ class VideoPlayer extends React.Component {
                         src={this.volumeButtonImg} />
                     </button >
                     {this.state.showVolumeSlider && <div
-                      // <div
                       className='volume-slider'
                       ref='volumeSlider'
                       onClick={this.changeVolume}
@@ -667,9 +658,11 @@ class VideoPlayer extends React.Component {
 }
 
 VideoPlayer.propTypes = {
-  playbackRate: PropTypes.number,
+  videoSrc: PropTypes.string.isRequired,
+  videoVolume: PropTypes.number,
+  videoProgress: PropTypes.string,
+  videoPlaybackRate: PropTypes.number,
   autoPlay: PropTypes.bool,
-  muted: PropTypes.bool,
   playButtonImg: PropTypes.string,
   pauseButtonImg: PropTypes.string,
   nextButtonImg: PropTypes.string,
@@ -680,30 +673,26 @@ VideoPlayer.propTypes = {
   playbackRateButtonImg: PropTypes.string,
   previousButtonClassName: PropTypes.string,
   nextButtonClassName: PropTypes.string,
-  videoSrc: PropTypes.string.isRequired,
-  playlist: PropTypes.bool, // is there any playlist
   onPlay: PropTypes.func,
   onPlaying: PropTypes.func,
   onEnded: PropTypes.func,
+  playlist: PropTypes.bool, // is there any playlist
   playNext: PropTypes.func,
   playPrevious: PropTypes.func,
   defaultSeekTime: PropTypes.number,
   defaultVolumeChange: PropTypes.number,
-  settings: PropTypes.bool,
-  videoVolume: PropTypes.number,
-  videoProgress: PropTypes.number,
-  videoPlaybackRate: PropTypes.number,
   browserControls: PropTypes.bool,
   htmlControls: PropTypes.bool,
-  keyboardControl: PropTypes.bool,
+  keyboardControls: PropTypes.bool,
   notificationClass: PropTypes.string,
   notificationDuration: PropTypes.number
 }
 
 VideoPlayer.defaultProps = {
-  playbackRate: 1,
+  videoVolume: 70,
+  videoProgress: '',
+  videoPlaybackRate: 1,
   autoPlay: false,
-  muted: false,
   playButtonImg: require('./media/fi-play.svg'),
   pauseButtonImg: require('./media/pause-button.svg'),
   nextButtonImg: require('./media/next.svg'),
@@ -716,14 +705,11 @@ VideoPlayer.defaultProps = {
   nextButtonClassName: '',
   playlist: false,
   defaultSeekTime: 10,
-  defaultVolumeChange: 0.1,
+  defaultVolumeChange: 10,
   settings: false,
-  videoVolume: 1,
-  videoProgress: 0,
-  videoPlaybackRate: 1,
   browserControls: false,
   htmlControls: true,
-  keyboardControl: true,
+  keyboardControls: true,
   notificationClass: 'video-player-notifications',
   notificationDuration: 1500
 }
