@@ -71,24 +71,24 @@ Prop   	 	     |  Type      |  Default      |  Description
 
 ## Keyboard Shortcuts
 
-Key   	 	     |  Action 
----------   	 |  ---------
-      Up Arrow |  Increase Volume
-      Down Arrow |  Decrease Volume
-      Right Arrow |  Seek Forward
-      Left Arrow |  Seek Backward
-      C |  Increase PlayBack Rate
-      X |  Decrease PlayBack Rate
-      Z |  Default Playback Rate
-      Enter / F |  Fullscreen Toggle
-      Space / K |  play-Pause Toggle
-      L |  Seek Forward
-      J |  Seek Backward
-      M |  Toggle Volume
-      T |  Toggle TheaterMode
-      > |  play Next Video
-      < |  play Previous Video
-      H |  Show HelpBox
+Key   	 	|  Action 
+---------   |  -------
+Up Arrow |  Increase Volume
+Down Arrow |  Decrease Volume
+Right Arrow |  Seek Forward
+Left Arrow |  Seek Backward
+C |  Increase PlayBack Rate
+X |  Decrease PlayBack Rate
+Z |  Default Playback Rate
+Enter / F |  Fullscreen Toggle
+Space / K |  play-Pause Toggle
+L |  Seek Forward
+J |  Seek Backward
+M |  Toggle Volume
+T |  Toggle TheaterMode
+> |  play Next Video
+< |  play Previous Video
+H |  Show HelpBox
 
 
 
