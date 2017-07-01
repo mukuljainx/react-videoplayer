@@ -86,7 +86,7 @@ L |  Seek Forward
 J |  Seek Backward
 M |  Toggle Volume
 T |  Toggle TheaterMode
-> |  play Next Video
+`>` |  play Next Video
 < |  play Previous Video
 H |  Show HelpBox
 
