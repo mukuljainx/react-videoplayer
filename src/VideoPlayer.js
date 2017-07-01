@@ -90,7 +90,7 @@ class VideoPlayer extends React.Component {
     this.helpBox = false
     this.videoKeyBinding = {
       38: {action: 'increaseVolume', key: 'Up-arrow'}, // arrow-up
-      40: {action: 'DecreaseVolume', key: 'Down-arrow'}, // arrow-down
+      40: {action: 'decreaseVolume', key: 'Down-arrow'}, // arrow-down
       39: {action: 'seekForward', key: 'Right-arrow'}, // arrow-right
       37: {action: 'seekBackward', key: 'Left-arrow'}, // arrow-left
       67: {action: 'increasePlayBackRate', key: 'C'}, // c
@@ -423,7 +423,7 @@ class VideoPlayer extends React.Component {
       case 'increaseVolume':
         this.changeVolume(event, true, 'up')
         break
-      case 'DecreaseVolume':
+      case 'decreaseVolume':
         this.changeVolume(event, true, 'down')
         break
       case 'toggleVolume':
