@@ -4,6 +4,12 @@
   A configrable react html5 video component
 </p>
 
+<p align="center">
+   <img src="https://travis-ci.org/mukuljainx/react-videoplayer.svg?branch=master">
+</p>
+
+
+
 
 ## Installation
 
