@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Notification from './Notification'
+import Notification from './Notification';
 
 class VideoPlayer extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
 
     this.state = {
       videoPlaying: this.props.autoPlay,
@@ -20,74 +20,74 @@ class VideoPlayer extends React.Component {
       videoClassName: '',
       hideMouse: '',
       showNotification: false
-    }
+    };
 
-    this.changePlaybackRate = this.changePlaybackRate.bind(this)
-    this.toggleVideoPlay = this.toggleVideoPlay.bind(this)
-    this.videoOnClick = this.videoOnClick.bind(this)
-    this.showVideoControls = this.showVideoControls.bind(this)
-    this.hideVideoControls = this.hideVideoControls.bind(this)
-    this.onDurationChange = this.onDurationChange.bind(this)
-    this.onPlay = this.onPlay.bind(this)
-    this.onPlaying = this.onPlaying.bind(this)
-    this.onEnded = this.onEnded.bind(this)
-    this.putFoucsOnMe = this.putFoucsOnMe.bind(this)
+    this.changePlaybackRate = this.changePlaybackRate.bind(this);
+    this.toggleVideoPlay = this.toggleVideoPlay.bind(this);
+    this.videoOnClick = this.videoOnClick.bind(this);
+    this.showVideoControls = this.showVideoControls.bind(this);
+    this.hideVideoControls = this.hideVideoControls.bind(this);
+    this.onDurationChange = this.onDurationChange.bind(this);
+    this.onPlay = this.onPlay.bind(this);
+    this.onPlaying = this.onPlaying.bind(this);
+    this.onEnded = this.onEnded.bind(this);
+    this.putFoucsOnMe = this.putFoucsOnMe.bind(this);
 
-    this.playNext = this.playNext.bind(this)
-    this.playPrevious = this.playPrevious.bind(this)
+    this.playNext = this.playNext.bind(this);
+    this.playPrevious = this.playPrevious.bind(this);
 
-    this.seek = this.seek.bind(this)
-    this.changeDefaultSeekingTime = this.changeDefaultSeekingTime.bind(this)
+    this.seek = this.seek.bind(this);
+    this.changeDefaultSeekingTime = this.changeDefaultSeekingTime.bind(this);
 
-    this.changeVolume = this.changeVolume.bind(this)
-    this.volumeSliderDragStart = this.volumeSliderDragStart.bind(this)
-    this.volumeSliderDragEnd = this.volumeSliderDragEnd.bind(this)
-    this.changeDefaultVolumeChange = this.changeDefaultVolumeChange.bind(this)
+    this.changeVolume = this.changeVolume.bind(this);
+    this.volumeSliderDragStart = this.volumeSliderDragStart.bind(this);
+    this.volumeSliderDragEnd = this.volumeSliderDragEnd.bind(this);
+    this.changeDefaultVolumeChange = this.changeDefaultVolumeChange.bind(this);
 
-    this.updateProgressBar = this.updateProgressBar.bind(this)
+    this.updateProgressBar = this.updateProgressBar.bind(this);
 
-    this.progressBarOnClick = this.progressBarOnClick.bind(this)
-    this.progressBarDragStart = this.progressBarDragStart.bind(this)
-    this.progressBarDragEnd = this.progressBarDragEnd.bind(this)
+    this.progressBarOnClick = this.progressBarOnClick.bind(this);
+    this.progressBarDragStart = this.progressBarDragStart.bind(this);
+    this.progressBarDragEnd = this.progressBarDragEnd.bind(this);
 
-    this.toggleVolume = this.toggleVolume.bind(this)
-    this.showVolumeSlider = this.showVolumeSlider.bind(this)
-    this.hideVolumeSlider = this.hideVolumeSlider.bind(this)
+    this.toggleVolume = this.toggleVolume.bind(this);
+    this.showVolumeSlider = this.showVolumeSlider.bind(this);
+    this.hideVolumeSlider = this.hideVolumeSlider.bind(this);
 
-    this.showPlaybackRateSlider = this.showPlaybackRateSlider.bind(this)
-    this.hidePlaybackRateSlider = this.hidePlaybackRateSlider.bind(this)
+    this.showPlaybackRateSlider = this.showPlaybackRateSlider.bind(this);
+    this.hidePlaybackRateSlider = this.hidePlaybackRateSlider.bind(this);
 
-    this.videoHandleKeyDown = this.videoHandleKeyDown.bind(this)
+    this.videoHandleKeyDown = this.videoHandleKeyDown.bind(this);
 
-    this.videoFullScreenToggle = this.videoFullScreenToggle.bind(this)
-    this.toggleTheaterMode = this.toggleTheaterMode.bind(this)
+    this.videoFullScreenToggle = this.videoFullScreenToggle.bind(this);
+    this.toggleTheaterMode = this.toggleTheaterMode.bind(this);
 
-    this.showNotification = this.showNotification.bind(this)
-    this.hideNotification = this.hideNotification.bind(this)
+    this.showNotification = this.showNotification.bind(this);
+    this.hideNotification = this.hideNotification.bind(this);
 
-    this.showHelpBox = this.showHelpBox.bind(this)
+    this.showHelpBox = this.showHelpBox.bind(this);
   }
 
   componentWillMount () {
     if (this.props.autoPlay) {
-      this.videoButton = this.props.pauseButtonImg
+      this.videoButton = this.props.pauseButtonImg;
     } else {
-      this.videoButton = this.props.playButtonImg
+      this.videoButton = this.props.playButtonImg;
     }
-    this.volumeButtonImg = this.props.volumeButtonImg
+    this.volumeButtonImg = this.props.volumeButtonImg;
   }
 
   componentDidMount () {
-    this.playbackRate = this.props.playbackRate
-    this.video = this.refs.video
-    this.videoControlContainer = this.refs.videoControlContainer
-    this.lastSavedVolume = this.video.volume
-    this.defaultSeekTime = this.props.defaultSeekTime
-    this.defaultVolumeChange = this.props.defaultVolumeChange / 100
-    this.progressBarWrapper = this.refs.progressBar
-    this.preventSliderHide = false
-    this.theaterModeOriginal = false
-    this.helpBox = false
+    this.playbackRate = this.props.playbackRate;
+    this.video = this.refs.video;
+    this.videoControlContainer = this.refs.videoControlContainer;
+    this.lastSavedVolume = this.video.volume;
+    this.defaultSeekTime = this.props.defaultSeekTime;
+    this.defaultVolumeChange = this.props.defaultVolumeChange / 100;
+    this.progressBarWrapper = this.refs.progressBar;
+    this.preventSliderHide = false;
+    this.theaterModeOriginal = false;
+    this.helpBox = false;
     this.videoKeyBinding = {
       38: {action: 'increaseVolume', key: 'Up-arrow'}, // arrow-up
       40: {action: 'decreaseVolume', key: 'Down-arrow'}, // arrow-down
@@ -107,449 +107,449 @@ class VideoPlayer extends React.Component {
       190: {action: 'playNextVideo', key: '>'}, // >
       188: {action: 'playPreviousVideo', key: '<'}, // <
       72: {action: 'showHelpBox', key: 'H'} // h
-    }
+    };
 
-    this.video.volume = this.props.videoVolume / 100
-    this.video.playbackRate = this.props.videoPlaybackRate
+    this.video.volume = this.props.videoVolume / 100;
+    this.video.playbackRate = this.props.videoPlaybackRate;
     if (this.props.autoPlay) {
-      this.video.play()
+      this.video.play();
     }
     if (this.props.videoProgress.length > 0) {
-      const time = this.props.videoProgress.split('m')
-      const minutes = time[0]
-      const seconds = time[1].split('s')[0]
-      const totalSeconds = parseFloat(minutes) * 60 + parseFloat(seconds)
-      this.video.currentTime = totalSeconds
+      const time = this.props.videoProgress.split('m');
+      const minutes = time[0];
+      const seconds = time[1].split('s')[0];
+      const totalSeconds = parseFloat(minutes) * 60 + parseFloat(seconds);
+      this.video.currentTime = totalSeconds;
     }
     if (!this.props.defaultBrowserControls) {
-      this.videoDefaultControls = 'hide-video-controls'
+      this.videoDefaultControls = 'hide-video-controls';
     }
   }
 
   componentWillUnmount () {
-    clearTimeout(this.hideAgain)
-    clearTimeout(this.hideNotificationTimeOut)
+    clearTimeout(this.hideAgain);
+    clearTimeout(this.hideNotificationTimeOut);
   }
 
   changePlaybackRate (option) {
-    let newPlaybackRate = this.video.playbackRate
+    let newPlaybackRate = this.video.playbackRate;
     if (option === 'increase') {
-      newPlaybackRate = newPlaybackRate < 4 ? newPlaybackRate + 0.25 : newPlaybackRate
+      newPlaybackRate = newPlaybackRate < 4 ? newPlaybackRate + 0.25 : newPlaybackRate;
     } else if (option === 'decrease') {
-      newPlaybackRate = newPlaybackRate > 0.5 ? newPlaybackRate - 0.25 : newPlaybackRate
+      newPlaybackRate = newPlaybackRate > 0.5 ? newPlaybackRate - 0.25 : newPlaybackRate;
     } else if (option === 'default') {
-      newPlaybackRate = this.props.videoPlaybackRate
+      newPlaybackRate = this.props.videoPlaybackRate;
     } else if (option === 'custom') {
-      const playbackControl = this.refs.playbackRateControl
-      const playbackRateSliderHeight = this.refs.playbackRateSlider.offsetHeight
+      const playbackControl = this.refs.playbackRateControl;
+      const playbackRateSliderHeight = this.refs.playbackRateSlider.offsetHeight;
 
-      newPlaybackRate = (1 - (event.clientY - (playbackControl.offsetTop - playbackRateSliderHeight)) / (playbackRateSliderHeight)) * 4
+      newPlaybackRate = (1 - (event.clientY - (playbackControl.offsetTop - playbackRateSliderHeight)) / (playbackRateSliderHeight)) * 4;
     }
 
-    this.video.playbackRate = newPlaybackRate
-    this.showNotification(['Playback Speed: ' + newPlaybackRate])
+    this.video.playbackRate = newPlaybackRate;
+    this.showNotification(['Playback Speed: ' + newPlaybackRate]);
     this.setState({
       videoPlaybackRate: newPlaybackRate
-    })
+    });
   }
 
   toggleVideoPlay () {
     if (this.props.videoSrc === '') {
-      return
+      return;
     }
     if (!this.state.videoPlaying) {
-      this.videoButton = this.props.pauseButtonImg
-      this.video.play()
+      this.videoButton = this.props.pauseButtonImg;
+      this.video.play();
     } else {
-      this.videoButton = this.props.playButtonImg
-      this.video.pause()
+      this.videoButton = this.props.playButtonImg;
+      this.video.pause();
     }
     this.setState((prevState) => {
       return {
         videoPlaying: !prevState.videoPlaying
-      }
-    })
+      };
+    });
   }
 
   onDurationChange () {
     this.setState({
       videoProgress: 0
-    })
+    });
   }
 
   onPlay () {
     this.setState({
       videoVolume: this.video.volume
-    })
+    });
 
     if (this.props.onPlay) {
-      this.props.onPlay()
+      this.props.onPlay();
     }
   }
 
   onPlaying () {
     if (this.props.onPlaying) {
-      this.props.onPlaying()
+      this.props.onPlaying();
     }
   }
 
   onEnded () {
     this.setState({
       videoProgress: 0
-    })
-    this.videoButton = this.props.playButtonImg
+    });
+    this.videoButton = this.props.playButtonImg;
     if (this.props.onEnded) {
-      this.props.onEnded()
+      this.props.onEnded();
     }
   }
 
   playNext () {
     if (!this.props.playNext) {
-      this.showNotification(['No file found'])
+      this.showNotification(['No file found']);
     } else {
-      this.props.playNext()
-      this.videoButton = this.props.pauseButtonImg
+      this.props.playNext();
+      this.videoButton = this.props.pauseButtonImg;
     }
   }
 
   playPrevious () {
     if (!this.props.playPrevious) {
-      this.showNotification(['No file found'])
+      this.showNotification(['No file found']);
     } else {
-      this.props.playPrevious()
-      this.videoButton = this.props.pauseButtonImg
+      this.props.playPrevious();
+      this.videoButton = this.props.pauseButtonImg;
     }
   }
 
   seek (direction) {
     if (direction === 'forward') {
-      this.video.currentTime += this.defaultSeekTime
+      this.video.currentTime += this.defaultSeekTime;
     } else if (direction === 'backward') {
-      this.video.currentTime -= this.defaultSeekTime
+      this.video.currentTime -= this.defaultSeekTime;
     }
   }
 
   changeDefaultSeekingTime (newTime) {
     if (newTime > 0) {
-      this.seekTime = newTime
+      this.seekTime = newTime;
     }
   }
 
   changeVolume (event, keyevent, direction) {
-    let volume = 0
+    let volume = 0;
     if (event.type === 'keydown') {
       if (direction === 'up' && this.video.volume <= 1) {
-        volume = this.video.volume + this.defaultVolumeChange
+        volume = this.video.volume + this.defaultVolumeChange;
       } else if (direction === 'down' && this.video.volume >= 0) {
-        volume = this.video.volume - this.defaultVolumeChange
+        volume = this.video.volume - this.defaultVolumeChange;
       }
-      volume = Math.round(volume * 10) / 10
+      volume = Math.round(volume * 10) / 10;
     } else {
       if (this.state.showVolumeSlider === false) {
-        return
+        return;
       }
-      const videoControlContainer = this.refs.videoControlContainer
-      const volumeSliderHeight = this.refs.volumeSlider.offsetHeight
+      const videoControlContainer = this.refs.videoControlContainer;
+      const volumeSliderHeight = this.refs.volumeSlider.offsetHeight;
 
-      volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 5)) / (volumeSliderHeight)
+      volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 5)) / (volumeSliderHeight);
     }
 
-    this.volumeButtonImg = this.props.volumeButtonImg
+    this.volumeButtonImg = this.props.volumeButtonImg;
     if (volume > 1) {
-      volume = 1
+      volume = 1;
     } else if (volume <= 0) {
-      this.volumeButtonImg = this.props.volumeButtonMuteImg
-      volume = 0
+      this.volumeButtonImg = this.props.volumeButtonMuteImg;
+      volume = 0;
     }
     if (event.type === 'keydown') {
-      this.showNotification(['Volume: ' + volume * 100])
+      this.showNotification(['Volume: ' + volume * 100]);
     }
 
-    this.video.volume = volume
+    this.video.volume = volume;
     this.setState({
       videoVolume: volume
-    })
+    });
   }
 
   volumeSliderDragStart (event) {
-    this.changeVolume(event)
-    this.preventSliderHide = true
-    document.addEventListener('mousemove', this.changeVolume)
-    document.addEventListener('mouseup', this.volumeSliderDragEnd)
+    this.changeVolume(event);
+    this.preventSliderHide = true;
+    document.addEventListener('mousemove', this.changeVolume);
+    document.addEventListener('mouseup', this.volumeSliderDragEnd);
   }
 
   volumeSliderDragEnd () {
-    document.removeEventListener('mousemove', this.changeVolume)
-    document.removeEventListener('mouseup', this.volumeSliderDragEnd)
-    this.hideVolumeSlider()
+    document.removeEventListener('mousemove', this.changeVolume);
+    document.removeEventListener('mouseup', this.volumeSliderDragEnd);
+    this.hideVolumeSlider();
   }
 
   changeDefaultVolumeChange (newVolume) {
     if (newVolume <= 1 && newVolume >= 0) {
-      this.defaultVolumeChange = newVolume
+      this.defaultVolumeChange = newVolume;
     }
   }
 
   updateProgressBar () {
-    const buffered = this.video.buffered
-    const target = buffered.length - 1
+    const buffered = this.video.buffered;
+    const target = buffered.length - 1;
 
-    let videoBufferedProgressStart = 0
-    let videoBufferedProgressEnd = 0
+    let videoBufferedProgressStart = 0;
+    let videoBufferedProgressEnd = 0;
 
     /* TODO: Fix buffered progress bar */
     if (buffered.length !== 0) {
-      videoBufferedProgressStart = this.video.buffered.start(target) / this.video.duration * 100
-      videoBufferedProgressEnd = this.video.buffered.end(target) / this.video.duration * 100
+      videoBufferedProgressStart = this.video.buffered.start(target) / this.video.duration * 100;
+      videoBufferedProgressEnd = this.video.buffered.end(target) / this.video.duration * 100;
     }
     this.setState({
       videoProgress: this.video.currentTime / this.video.duration * 100,
       videoBufferedProgressStart,
       videoBufferedProgressEnd
-    })
+    });
   }
 
   progressBarOnClick (event) {
-    let progressValue = (event.clientX - (this.progressBarWrapper.offsetLeft + this.refs.videoContainer.offsetLeft)) / (this.progressBarWrapper.offsetWidth)
+    let progressValue = (event.clientX - (this.progressBarWrapper.offsetLeft + this.refs.videoContainer.offsetLeft)) / (this.progressBarWrapper.offsetWidth);
     if (progressValue > 1) {
-      progressValue = 1
+      progressValue = 1;
     }
-    this.video.currentTime = (progressValue * this.video.duration)
+    this.video.currentTime = (progressValue * this.video.duration);
     this.setState({
       videoProgress: progressValue * 100
-    })
+    });
   }
 
   progressBarDragStart (event) {
-    this.progressBarOnClick(event)
-    document.addEventListener('mousemove', this.progressBarDragStart)
-    document.addEventListener('mouseup', this.progressBarDragEnd)
+    this.progressBarOnClick(event);
+    document.addEventListener('mousemove', this.progressBarDragStart);
+    document.addEventListener('mouseup', this.progressBarDragEnd);
   }
 
   progressBarDragEnd () {
-    document.removeEventListener('mousemove', this.progressBarDragStart)
-    document.removeEventListener('mouseup', this.progressBarDragEnd)
+    document.removeEventListener('mousemove', this.progressBarDragStart);
+    document.removeEventListener('mouseup', this.progressBarDragEnd);
   }
 
   toggleVolume () {
-    const currentVolume = this.video.volume
+    const currentVolume = this.video.volume;
     if (currentVolume > 0) {
-      this.lastSavedVolume = currentVolume
-      this.volumeButtonImg = this.props.volumeButtonMuteImg
-      this.video.volume = 0
+      this.lastSavedVolume = currentVolume;
+      this.volumeButtonImg = this.props.volumeButtonMuteImg;
+      this.video.volume = 0;
     } else if (currentVolume === 0) {
-      this.video.volume = this.lastSavedVolume
-      this.volumeButtonImg = this.props.volumeButtonImg
+      this.video.volume = this.lastSavedVolume;
+      this.volumeButtonImg = this.props.volumeButtonImg;
     }
     this.setState({
       videoVolume: this.video.volume
-    })
+    });
   }
 
   showVolumeSlider () {
     this.setState({
       showVolumeSlider: true
-    })
+    });
   }
 
   hideVolumeSlider () {
     if (!this.preventSliderHide) {
       this.setState({
         showVolumeSlider: false
-      })
+      });
     } else {
-      this.preventSliderHide = false
+      this.preventSliderHide = false;
     }
   }
 
   showPlaybackRateSlider () {
     this.setState({
       showPlaybackRateSlider: true
-    })
+    });
   }
 
   hidePlaybackRateSlider () {
     this.setState({
       showPlaybackRateSlider: false
-    })
+    });
   }
 
   videoFullScreenToggle () {
-    const isFullScreenWebkit = document.webkitIsFullScreen
-    const isFullScreenMoz = document.mozFullScreen
+    const isFullScreenWebkit = document.webkitIsFullScreen;
+    const isFullScreenMoz = document.mozFullScreen;
 
-    let videoClassName = ''
+    let videoClassName = '';
 
     if (isFullScreenWebkit !== undefined) {
       if (isFullScreenWebkit) {
-        videoClassName = ''
-        document.webkitExitFullscreen()
+        videoClassName = '';
+        document.webkitExitFullscreen();
       } else {
-        this.refs.videoContainer.webkitRequestFullscreen()
-        videoClassName = 'video-fit-to-screen'
-        this.showNotification(['Press [T] to toggle between Video Mode'])
+        this.refs.videoContainer.webkitRequestFullscreen();
+        videoClassName = 'video-fit-to-screen';
+        this.showNotification(['Press [T] to toggle between Video Mode']);
       }
     } else if (isFullScreenMoz !== undefined) {
       if (isFullScreenMoz) {
-        document.isFullScreenWebkit()
-        videoClassName = ''
+        document.isFullScreenWebkit();
+        videoClassName = '';
       } else {
-        this.refs.videoContainer.mozRequestFullScreen()
-        videoClassName = 'video-fit-to-screen'
-        this.showNotification(['Press [T] to toggle between Video Mode'])
+        this.refs.videoContainer.mozRequestFullScreen();
+        videoClassName = 'video-fit-to-screen';
+        this.showNotification(['Press [T] to toggle between Video Mode']);
       }
     }
     this.setState({
       videoClassName
-    })
+    });
   }
 
   putFoucsOnMe (event) {
-    event.target.focus()
+    event.target.focus();
   }
 
   videoHandleKeyDown (event) {
     if (!this.props.keyboardControls) {
-      return
+      return;
     }
-    event.preventDefault()
-    let handle = ''
+    event.preventDefault();
+    let handle = '';
     if (this.videoKeyBinding[event.keyCode]) {
-      handle = this.videoKeyBinding[event.keyCode].action
+      handle = this.videoKeyBinding[event.keyCode].action;
     } else {
-      handle = 'helpNotification'
+      handle = 'helpNotification';
     }
     switch (handle) {
       case 'increaseVolume':
-        this.changeVolume(event, true, 'up')
-        break
+        this.changeVolume(event, true, 'up');
+        break;
       case 'decreaseVolume':
-        this.changeVolume(event, true, 'down')
-        break
+        this.changeVolume(event, true, 'down');
+        break;
       case 'toggleVolume':
-        this.toggleVolume()
-        break
+        this.toggleVolume();
+        break;
       case 'seekForward':
-        this.seek('forward')
-        break
+        this.seek('forward');
+        break;
       case 'seekBackward':
-        this.seek('backward')
-        break
+        this.seek('backward');
+        break;
       case 'playPauseToggle':
-        this.toggleVideoPlay()
-        break
+        this.toggleVideoPlay();
+        break;
       case 'increasePlayBackRate':
-        this.changePlaybackRate('increase')
-        break
+        this.changePlaybackRate('increase');
+        break;
       case 'decreasePlayBackRate':
-        this.changePlaybackRate('decrease')
-        break
+        this.changePlaybackRate('decrease');
+        break;
       case 'defaultPlaybackRate':
-        this.changePlaybackRate('default')
-        break
+        this.changePlaybackRate('default');
+        break;
       case 'playNextVideo':
-        this.playNext()
-        break
+        this.playNext();
+        break;
       case 'playPreviousVideo':
-        this.playPrevious()
-        break
+        this.playPrevious();
+        break;
       case 'fullScreenToggle':
-        this.videoFullScreenToggle()
-        break
+        this.videoFullScreenToggle();
+        break;
       case 'toggleTheaterMode':
-        this.toggleTheaterMode()
-        break
+        this.toggleTheaterMode();
+        break;
       case 'showHelpBox':
-        this.showHelpBox()
-        break
+        this.showHelpBox();
+        break;
       case 'helpNotification':
-        this.showNotification(['Press [H] for Help'])
-        break
+        this.showNotification(['Press [H] for Help']);
+        break;
       default:
-        break
+        break;
     }
   }
 
   videoOnClick (event) {
-    this.putFoucsOnMe(event)
-    this.toggleVideoPlay()
+    this.putFoucsOnMe(event);
+    this.toggleVideoPlay();
   }
 
   showVideoControls () {
-    clearTimeout(this.hideAgain)
+    clearTimeout(this.hideAgain);
     this.setState({
       hideMouse: 'none',
       videoControlContainerDisplay: 'flex'
-    })
+    });
 
-    this.hideAgain = setTimeout(this.hideVideoControls, 3000)
+    this.hideAgain = setTimeout(this.hideVideoControls, 3000);
   }
 
   hideVideoControls () {
     this.setState({
       hideMouse: 'hide-mouse-cursor',
       videoControlContainerDisplay: 'none'
-    })
+    });
   }
 
   toggleTheaterMode () {
-    let className = ''
+    let className = '';
     if (this.theaterModeOriginal) {
-      className = 'video-fit-to-screen'
+      className = 'video-fit-to-screen';
     } else {
-      className = 'video-original'
+      className = 'video-original';
     }
-    this.theaterModeOriginal = !this.theaterModeOriginal
+    this.theaterModeOriginal = !this.theaterModeOriginal;
     this.setState({
       videoClassName: className
-    })
+    });
   }
 
   showNotification (value, className, duration) {
-    clearTimeout(this.hideNotificationTimeOut)
+    clearTimeout(this.hideNotificationTimeOut);
 
-    this.notificationClass = className || this.props.notificationClass
-    const Duration = duration || this.props.notificationDuration
+    this.notificationClass = className || this.props.notificationClass;
+    const Duration = duration || this.props.notificationDuration;
     // const Duration = duration || 15000;
-    this.notificationValue = value
+    this.notificationValue = value;
 
     this.setState({
       showNotification: true
-    })
+    });
 
-    this.hideNotificationTimeOut = setTimeout(this.hideNotification, Duration)
+    this.hideNotificationTimeOut = setTimeout(this.hideNotification, Duration);
   }
 
   hideNotification () {
-    clearTimeout(this.hideNotificationTimeOut)
+    clearTimeout(this.hideNotificationTimeOut);
     this.setState({
       showNotification: false
-    })
+    });
   }
 
   showHelpBox () {
     if (!this.helpBox) {
-      const values = []
-      const keyBinding = this.videoKeyBinding
+      const values = [];
+      const keyBinding = this.videoKeyBinding;
       for (let key in keyBinding) {
         if (keyBinding.hasOwnProperty(key)) {
-          values.push(keyBinding[key].key + ' : ' + keyBinding[key].action)
+          values.push(keyBinding[key].key + ' : ' + keyBinding[key].action);
         }
       }
-      this.showNotification(values, 'help-box', 15000)
+      this.showNotification(values, 'help-box', 15000);
     } else {
-      this.hideNotification()
+      this.hideNotification();
     }
-    this.helpBox = !this.helpBox
+    this.helpBox = !this.helpBox;
   }
 
   render () {
     return (
-      <div className='video-player-wrapper-row'>
-        <div className='react-video-player-columns'>
+      <div className="video-player-wrapper-row">
+        <div className="react-video-player-columns">
           <div
-            className='video-player-wrapper'
-            ref='videoContainer'
+            className="video-player-wrapper"
+            ref="videoContainer"
             onMouseEnter={this.showVideoControls}
             onMouseLeave={this.hideVideoControls}
             onMouseMove={this.showVideoControls}
@@ -562,7 +562,7 @@ class VideoPlayer extends React.Component {
               onKeyDown={this.videoHandleKeyDown}
               onClick={this.videoOnClick}
               onDoubleClick={this.videoFullScreenToggle}
-              ref='video'
+              ref="video"
               src={this.props.videoSrc}
               controls
               autoPlay={this.props.autoPlay}
@@ -573,17 +573,17 @@ class VideoPlayer extends React.Component {
               onEnded={this.onEnded}
               onTimeUpdate={this.updateProgressBar}
             />
-            {this.props.customHtmlControls && <div className='video-controls react-video-player-row react-video-player-align-middle'
-              ref='videoControlContainer'
+            {this.props.customHtmlControls && <div className="video-controls react-video-player-row react-video-player-align-middle"
+              ref="videoControlContainer"
               style={{'display': this.state.videoControlContainerDisplay}}>
-              <div className='playback-control react-video-player-columns react-video-player-shrink'>
+              <div className="playback-control react-video-player-columns react-video-player-shrink">
                 {this.props.playlist &&
                 <button className={'previous ' + this.props.previousButtonClassName}
                   onClick={this.playPrevious}>
                   <img src={this.props.previousButtonImg} />
                 </button>}
 
-                <button className='play-pause' onClick={this.toggleVideoPlay}>
+                <button className="play-pause" onClick={this.toggleVideoPlay}>
                   <img src={this.videoButton} />
                 </button>
 
@@ -593,12 +593,12 @@ class VideoPlayer extends React.Component {
                   <img src={this.props.nextButtonImg} />
                 </button>}
               </div>
-              <div className='progress-bar-control react-video-player-columns'>
-                <div className='progress-bar'
+              <div className="progress-bar-control react-video-player-columns">
+                <div className="progress-bar"
                   onMouseDown={this.progressBarDragStart}
-                  ref='progressBar'>
-                  <div className='progress' style={{'width': this.state.videoProgress + '%'}} />
-                  <div className='progress-buffered'
+                  ref="progressBar">
+                  <div className="progress" style={{'width': this.state.videoProgress + '%'}} />
+                  <div className="progress-buffered"
                     style={{
                       'width': (this.state.videoBufferedProgressEnd - this.state.videoBufferedProgressStart) + '%',
                       'left': (this.state.videoBufferedProgressStart) + '%'
@@ -606,27 +606,27 @@ class VideoPlayer extends React.Component {
                   />
                 </div >
               </div >
-              <div className='react-video-player-columns react-video-player-shrink'>
+              <div className="react-video-player-columns react-video-player-shrink">
                 <div
-                  ref='volumeControl'
-                  className='volume-control'
+                  ref="volumeControl"
+                  className="volume-control"
                   onMouseLeave={this.hideVolumeSlider}>
                   <button
-                    className='volumeButton'
+                    className="volumeButton"
                     onClick={this.toggleVolume}
                     onMouseEnter={this.showVolumeSlider}>
                     <img
                       src={this.volumeButtonImg} />
                   </button >
                   {this.state.showVolumeSlider && <div
-                    className='volume-slider'
-                    ref='volumeSlider'
+                    className="volume-slider"
+                    ref="volumeSlider"
                     onClick={this.changeVolume}
                     onMouseDown={this.volumeSliderDragStart}
                   >
-                    <div className='volume-wrapper-box'>
-                      <div className='volume-wrapper'>
-                        <div className='volume'
+                    <div className="volume-wrapper-box">
+                      <div className="volume-wrapper">
+                        <div className="volume"
                           style={{'height': this.state.videoVolume * 100 + '%'}} />
                       </div>
                     </div>
@@ -635,10 +635,10 @@ class VideoPlayer extends React.Component {
                 </div>
               </div>
 
-              <div className='react-video-player-columns react-video-player-shrink'>
-                <div ref='fullScreen' className='fullscreen-control'>
+              <div className="react-video-player-columns react-video-player-shrink">
+                <div ref="fullScreen" className="fullscreen-control">
                   <button
-                    className='volumeButton'
+                    className="volumeButton"
                     onClick={this.videoFullScreenToggle}
                   >
                     <img src={this.props.fullScreenButtonImg} />
@@ -649,7 +649,7 @@ class VideoPlayer extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -682,7 +682,7 @@ VideoPlayer.propTypes = {
   keyboardControls: PropTypes.bool,
   notificationClass: PropTypes.string,
   notificationDuration: PropTypes.number
-}
+};
 
 VideoPlayer.defaultProps = {
   videoVolume: 70,
@@ -708,6 +708,6 @@ VideoPlayer.defaultProps = {
   keyboardControls: true,
   notificationClass: 'video-player-notifications',
   notificationDuration: 1500
-}
+};
 
-export default VideoPlayer
+export default VideoPlayer;
