@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../videoPlayer/node_modules/react';
 import PropTypes from 'prop-types';
 
 import Notification from './Notification';
@@ -78,7 +78,6 @@ class VideoPlayer extends React.Component {
   }
 
   componentDidMount () {
-    this.playbackRate = this.props.playbackRate;
     this.video = this.refs.video;
     this.videoControlContainer = this.refs.videoControlContainer;
     this.lastSavedVolume = this.video.volume;
@@ -311,6 +310,11 @@ class VideoPlayer extends React.Component {
 
   progressBarOnClick (event) {
     let progressValue = (event.clientX - (this.progressBarWrapper.offsetLeft + this.refs.videoContainer.offsetLeft)) / (this.progressBarWrapper.offsetWidth);
+
+    if(this.state.videoClassName !== ''){
+      progressValue += 8/this.progressBarWrapper.offsetWidth;
+    }
+
     if (progressValue > 1) {
       progressValue = 1;
     }
@@ -557,6 +561,7 @@ class VideoPlayer extends React.Component {
             {this.state.showNotification &&
             <Notification className={this.notificationClass} values={this.notificationValue} />}
 
+            {/*<p>{this.video.duration}</p>*/}
             <video
               className={this.state.videoClassName + ' ' + this.videoDefaultControls + ' ' + this.state.hideMouse + ' react-video-player-align-middle'}
               onKeyDown={this.videoHandleKeyDown}
