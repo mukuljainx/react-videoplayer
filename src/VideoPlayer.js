@@ -131,6 +131,10 @@ class VideoPlayer extends React.Component {
     if (!this.props.defaultBrowserControls) {
       this.videoDefaultControls = 'hide-video-controls';
     }
+
+    if(this.props.muted === true){
+      this.toggleVolume();
+    }
   }
 
   componentWillUnmount () {
@@ -612,7 +616,6 @@ class VideoPlayer extends React.Component {
               src={this.props.videoSrc}
               controls
               autoPlay={this.props.autoPlay}
-              muted={this.props.muted}
               onDurationChange={this.onDurationChange}
               onPlay={this.onPlay}
               onPlaying={this.onPlaying}
