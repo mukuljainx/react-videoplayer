@@ -12,6 +12,8 @@ class VideoPlayer extends React.Component {
       videoProgress: this.props.videoProgress,
       videoBufferedProgressStart: 0,
       videoBufferedProgressEnd: 0,
+      videoDuration: '',
+      videoCurrentTime: '',
       videoVolume: this.props.videoVolume,
       videoPlaybackRate: this.props.videoPlaybackRate,
       showVolumeSlider: false,
@@ -66,6 +68,9 @@ class VideoPlayer extends React.Component {
     this.hideNotification = this.hideNotification.bind(this);
 
     this.showHelpBox = this.showHelpBox.bind(this);
+
+    //utilities
+    this.formatTime = this.formatTime.bind(this);
   }
 
   componentWillMount () {
@@ -110,9 +115,11 @@ class VideoPlayer extends React.Component {
 
     this.video.volume = this.props.videoVolume / 100;
     this.video.playbackRate = this.props.videoPlaybackRate;
+
     if (this.props.autoPlay) {
       this.video.play();
     }
+
     if (this.props.videoProgress.length > 0) {
       const time = this.props.videoProgress.split('m');
       const minutes = time[0];
@@ -120,6 +127,7 @@ class VideoPlayer extends React.Component {
       const totalSeconds = parseFloat(minutes) * 60 + parseFloat(seconds);
       this.video.currentTime = totalSeconds;
     }
+
     if (!this.props.defaultBrowserControls) {
       this.videoDefaultControls = 'hide-video-controls';
     }
@@ -130,6 +138,30 @@ class VideoPlayer extends React.Component {
     clearTimeout(this.hideNotificationTimeOut);
   }
 
+
+  //utilities
+  formatTime (givenSeconds) {
+    // return time as "hh:mm:ss"
+    const hours = Math.floor(givenSeconds/(60*60));
+    givenSeconds = givenSeconds - hours*60*60;
+    const minutes = Math.floor((givenSeconds)/60);
+    givenSeconds = givenSeconds - minutes*60;
+    let seconds = givenSeconds;
+
+    if(seconds < 10){
+      seconds = "0" + seconds;
+    }
+
+    if(hours > 0) {
+      return hours + ":" + minutes + ":" + seconds;
+    }else{
+      return minutes + ":" + seconds;
+    }
+
+  }
+
+
+  //video functions
   changePlaybackRate (option) {
     let newPlaybackRate = this.video.playbackRate;
     if (option === 'increase') {
@@ -172,7 +204,8 @@ class VideoPlayer extends React.Component {
 
   onDurationChange () {
     this.setState({
-      videoProgress: 0
+      videoProgress: 0,
+      videoDuration: this.formatTime(Math.ceil(this.video.duration)),
     });
   }
 
@@ -249,15 +282,14 @@ class VideoPlayer extends React.Component {
       }
       const videoControlContainer = this.refs.videoControlContainer;
       const volumeSliderHeight = this.refs.volumeSlider.offsetHeight;
-      if(this.state.videoClassName === '') {
-        volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 7)) / (volumeSliderHeight);
-      }else{
+      if (this.state.videoClassName === '') {
+        volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 8)) / (volumeSliderHeight);
+      } else {
         volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight)) / (volumeSliderHeight);
       }
 
-      volume = volume > .95 ? 1 : volume;
-      volume = volume < .05 ? 0 : volume;
-
+      volume = volume > .97 ? 1 : volume;
+      volume = volume < .03 ? 0 : volume;
 
     }
 
@@ -311,6 +343,7 @@ class VideoPlayer extends React.Component {
     }
     this.setState({
       videoProgress: this.video.currentTime / this.video.duration * 100,
+      videoCurrentTime : this.formatTime(Math.ceil(this.video.currentTime)),
       videoBufferedProgressStart,
       videoBufferedProgressEnd
     });
@@ -319,8 +352,8 @@ class VideoPlayer extends React.Component {
   progressBarOnClick (event) {
     let progressValue = (event.clientX - (this.progressBarWrapper.offsetLeft + this.refs.videoContainer.offsetLeft)) / (this.progressBarWrapper.offsetWidth);
 
-    if(this.state.videoClassName !== ''){
-      progressValue += 8/this.progressBarWrapper.offsetWidth;
+    if (this.state.videoClassName !== '') {
+      progressValue += 8 / this.progressBarWrapper.offsetWidth;
     }
 
     if (progressValue > 1) {
@@ -567,7 +600,7 @@ class VideoPlayer extends React.Component {
             onMouseMove={this.showVideoControls}
           >
             {this.state.showNotification &&
-            <Notification className={this.notificationClass} values={this.notificationValue} />}
+            <Notification className={this.notificationClass} values={this.notificationValue}/>}
 
             {/*<p>{this.video.duration}</p>*/}
             <video
@@ -586,36 +619,40 @@ class VideoPlayer extends React.Component {
               onEnded={this.onEnded}
               onTimeUpdate={this.updateProgressBar}
             />
-            {this.props.customHtmlControls && <div className="video-controls react-video-player-row react-video-player-align-middle"
-              ref="videoControlContainer"
-              style={{'display': this.state.videoControlContainerDisplay}}>
+            {this.props.customHtmlControls &&
+            <div className="video-controls react-video-player-row react-video-player-align-middle"
+                 ref="videoControlContainer"
+                 style={{'display': this.state.videoControlContainerDisplay}}>
               <div className="playback-control react-video-player-columns react-video-player-shrink">
                 {this.props.playlist &&
                 <button className={'previous ' + this.props.previousButtonClassName}
-                  onClick={this.playPrevious}>
-                  <img src={this.props.previousButtonImg} />
+                        onClick={this.playPrevious}>
+                  <img src={this.props.previousButtonImg}/>
                 </button>}
 
                 <button className="play-pause" onClick={this.toggleVideoPlay}>
-                  <img src={this.videoButton} />
+                  <img src={this.videoButton}/>
                 </button>
 
                 {this.props.playlist &&
                 <button className={'next ' + this.props.nextButtonClassName}
-                  onClick={this.props.playNext}>
-                  <img src={this.props.nextButtonImg} />
+                        onClick={this.props.playNext}>
+                  <img src={this.props.nextButtonImg}/>
                 </button>}
               </div>
+              <div className="time-box react-video-player-columns react-video-player-shrink">
+                <span style={{color: 'white'}}>{this.state.videoCurrentTime}</span>/<span style={{color: 'white'}}>{this.state.videoDuration}</span>
+              </div >
               <div className="progress-bar-control react-video-player-columns">
                 <div className="progress-bar"
-                  onMouseDown={this.progressBarDragStart}
-                  ref="progressBar">
-                  <div className="progress" style={{'width': this.state.videoProgress + '%'}} />
+                     onMouseDown={this.progressBarDragStart}
+                     ref="progressBar">
+                  <div className="progress" style={{'width': this.state.videoProgress + '%'}}/>
                   <div className="progress-buffered"
-                    style={{
-                      'width': (this.state.videoBufferedProgressEnd - this.state.videoBufferedProgressStart) + '%',
-                      'left': (this.state.videoBufferedProgressStart) + '%'
-                    }}
+                       style={{
+                         'width': (this.state.videoBufferedProgressEnd - this.state.videoBufferedProgressStart) + '%',
+                         'left': (this.state.videoBufferedProgressStart) + '%'
+                       }}
                   />
                 </div >
               </div >
@@ -629,7 +666,7 @@ class VideoPlayer extends React.Component {
                     onClick={this.toggleVolume}
                     onMouseEnter={this.showVolumeSlider}>
                     <img
-                      src={this.volumeButtonImg} />
+                      src={this.volumeButtonImg}/>
                   </button >
                   {this.state.showVolumeSlider && <div
                     className="volume-slider"
@@ -640,7 +677,7 @@ class VideoPlayer extends React.Component {
                     <div className="volume-wrapper-box">
                       <div className="volume-wrapper">
                         <div className="volume"
-                          style={{'height': this.state.videoVolume * 100 + '%'}} />
+                             style={{'height': this.state.videoVolume * 100 + '%'}}/>
                       </div>
                     </div>
                   </div>
@@ -654,7 +691,7 @@ class VideoPlayer extends React.Component {
                     className="volumeButton"
                     onClick={this.videoFullScreenToggle}
                   >
-                    <img src={this.props.fullScreenButtonImg} />
+                    <img src={this.props.fullScreenButtonImg}/>
                   </button>
                 </div>
               </div>
@@ -672,6 +709,7 @@ VideoPlayer.propTypes = {
   videoProgress: PropTypes.string,
   videoPlaybackRate: PropTypes.number,
   autoPlay: PropTypes.bool,
+  muted: PropTypes.bool,
   playButtonImg: PropTypes.string,
   pauseButtonImg: PropTypes.string,
   nextButtonImg: PropTypes.string,
@@ -698,10 +736,11 @@ VideoPlayer.propTypes = {
 };
 
 VideoPlayer.defaultProps = {
-  videoVolume: 70,
+  videoVolume: 100,
   videoProgress: '',
   videoPlaybackRate: 1,
   autoPlay: false,
+  muted:false,
   playButtonImg: require('./media/fi-play.svg'),
   pauseButtonImg: require('./media/pause-button.svg'),
   nextButtonImg: require('./media/next.svg'),
