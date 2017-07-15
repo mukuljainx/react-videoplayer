@@ -1,4 +1,3 @@
-// import React from '../../videoPlayer/node_modules/react';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -413,13 +412,13 @@ class VideoPlayer extends React.Component {
   }
 
   hideVolumeSlider () {
-    // if (!this.preventSliderHide) {
-    //   this.setState({
-    //     showVolumeSlider: false
-    //   });
-    // } else {
-    //   this.preventSliderHide = false;
-    // }
+    if (!this.preventSliderHide) {
+      this.setState({
+        showVolumeSlider: false
+      });
+    } else {
+      this.preventSliderHide = false;
+    }
   }
 
   showPlaybackRateSlider () {
@@ -547,8 +546,8 @@ class VideoPlayer extends React.Component {
 
   hideVideoControls () {
     this.setState({
-      // hideMouse: 'hide-mouse-cursor',
-      // videoControlContainerDisplay: 'none'
+      hideMouse: 'hide-mouse-cursor',
+      videoControlContainerDisplay: 'none'
     });
   }
 
@@ -670,13 +669,13 @@ class VideoPlayer extends React.Component {
                   />
                 </div >
               </div >
-              <div className="react-video-player-columns react-video-player-shrink">
+              <div className="react-video-player-columns react-video-player-shrink" style={{height : "100%"}}>
                 <div
                   ref="volumeControl"
                   className="volume-control"
                   onMouseLeave={this.hideVolumeSlider}>
                   <button
-                    className="volumeButton"
+                    className="volume-button"
                     onClick={this.toggleVolume}
                     onMouseEnter={this.showVolumeSlider}>
                     <img
