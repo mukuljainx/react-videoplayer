@@ -249,8 +249,16 @@ class VideoPlayer extends React.Component {
       }
       const videoControlContainer = this.refs.videoControlContainer;
       const volumeSliderHeight = this.refs.volumeSlider.offsetHeight;
+      if(this.state.videoClassName === '') {
+        volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 7)) / (volumeSliderHeight);
+      }else{
+        volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight)) / (volumeSliderHeight);
+      }
 
-      volume = 1 - (event.clientY - (videoControlContainer.offsetTop - window.scrollY - volumeSliderHeight + 5)) / (volumeSliderHeight);
+      volume = volume > .95 ? 1 : volume;
+      volume = volume < .05 ? 0 : volume;
+
+
     }
 
     this.volumeButtonImg = this.props.volumeButtonImg;
@@ -357,13 +365,13 @@ class VideoPlayer extends React.Component {
   }
 
   hideVolumeSlider () {
-    if (!this.preventSliderHide) {
-      this.setState({
-        showVolumeSlider: false
-      });
-    } else {
-      this.preventSliderHide = false;
-    }
+    // if (!this.preventSliderHide) {
+    //   this.setState({
+    //     showVolumeSlider: false
+    //   });
+    // } else {
+    //   this.preventSliderHide = false;
+    // }
   }
 
   showPlaybackRateSlider () {
@@ -491,8 +499,8 @@ class VideoPlayer extends React.Component {
 
   hideVideoControls () {
     this.setState({
-      hideMouse: 'hide-mouse-cursor',
-      videoControlContainerDisplay: 'none'
+      // hideMouse: 'hide-mouse-cursor',
+      // videoControlContainerDisplay: 'none'
     });
   }
 
