@@ -97,9 +97,9 @@ class VideoPlayer extends React.Component {
       40: {action: 'decreaseVolume', key: 'Down-arrow'}, // arrow-down
       39: {action: 'seekForward', key: 'Right-arrow'}, // arrow-right
       37: {action: 'seekBackward', key: 'Left-arrow'}, // arrow-left
-      67: {action: 'increasePlayBackRate', key: 'C'}, // c
-      88: {action: 'decreasePlayBackRate', key: 'X'}, // x
-      90: {action: 'defaultPlaybackRate', key: 'Z'}, // z
+      221: {action: 'increasePlayBackRate', key: 'C'}, // ]
+      219: {action: 'decreasePlayBackRate', key: 'X'}, // [
+      220: {action: 'defaultPlaybackRate', key: 'Z'}, // |
       13: {action: 'fullScreenToggle', key: 'Enter'}, // enter
       70: {action: 'fullScreenToggle', key: 'F'}, // f
       32: {action: 'playPauseToggle', key: 'Space'}, // space

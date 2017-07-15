@@ -47,10 +47,11 @@ import 'react-videoplayer/lib/index.css'
 Prop   	 	     |  Type      |  Default      |  Description
 ---------   	 |  -------   |  -------      |  -----------
   `videoSrc` | string | | video url (**required**) 
-  `videoVolume` | number | 70 | intial playback volume range [0-100]
+  `videoVolume` | number | 100 | intial playback volume range [0-100]
   `videoProgress` | string | 0m0s | video start time as string MM:SS
   `videoPlaybackRate` | number | 1 | Default playback rate
   `autoPlay` | bool | false | video will played as component is mounted
+  `muted` | bool | false | mutes the video if true
   `playButtonImg` | string | svg-icon | icon path
   `pauseButtonImg` | string | svg-icon | icon path
   `nextButtonImg` | string | svg-icon | icon path
@@ -83,9 +84,9 @@ Up Arrow |  Increase Volume
 Down Arrow |  Decrease Volume
 Right Arrow |  Seek Forward
 Left Arrow |  Seek Backward
-C |  Increase PlayBack Rate
-X |  Decrease PlayBack Rate
-Z |  Default Playback Rate
+] |  Increase PlayBack Rate
+[ |  Decrease PlayBack Rate
+| |  Default Playback Rate
 Enter / F |  Fullscreen Toggle
 Space / K |  play-Pause Toggle
 L |  Seek Forward
