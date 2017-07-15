@@ -1,4 +1,5 @@
-import React from '../../videoPlayer/node_modules/react';
+// import React from '../../videoPlayer/node_modules/react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Notification from './Notification';
