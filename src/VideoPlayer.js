@@ -335,15 +335,25 @@ class VideoPlayer extends React.Component {
 
   updateProgressBar () {
     const buffered = this.video.buffered;
-    const target = buffered.length - 1;
 
     let videoBufferedProgressStart = 0;
     let videoBufferedProgressEnd = 0;
 
+    let minValue = Number.MAX_SAFE_INTEGER;
+    let minIndex = -1;
+
+    for(let i=0; i<buffered.length; i++){
+      const temp = Math.abs(this.video.currentTime - buffered.start(i));
+      if(temp < minValue){
+        minValue = temp;
+        minIndex = i;
+      }
+    }
+
     /* TODO: Fix buffered progress bar */
     if (buffered.length !== 0) {
-      videoBufferedProgressStart = this.video.buffered.start(target) / this.video.duration * 100;
-      videoBufferedProgressEnd = this.video.buffered.end(target) / this.video.duration * 100;
+      videoBufferedProgressStart = this.video.buffered.start(minIndex) / this.video.duration * 100;
+      videoBufferedProgressEnd = this.video.buffered.end(minIndex) / this.video.duration * 100;
     }
     this.setState({
       videoProgress: this.video.currentTime / this.video.duration * 100,
